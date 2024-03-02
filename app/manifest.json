@@ -1,0 +1,37 @@
+{
+  "short_name": "Iftarkar",
+  "url": "www.iftarkar.com",
+  "description": "Iftarkar is your companion app for 2024's Ramzan. Daily Countdown Timer, Iftar and Sehri Timings for Jammu, Kashmir, Kargil and Ladakh.",
+  "background_color": "#eceef8",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/?utm_source=pwa",
+  "theme_color": "#131836",
+  "name": "Iftarkar",
+  "icons": [
+    {
+      "src": "/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "oritentation": "any",
+  "categories": ["utilities"],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.namazpar"
+    },
+    {
+      "platform": "apple",
+      "url": "https://apps.apple.com/us/app/namazpar/id6475305055"
+    }
+  ],
+  "prefer_related_applications": true
+}

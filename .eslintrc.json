@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "eslint:recommended",
+    "next",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["react", "tailwindcss", "import", "jsx-a11y"]
 }
