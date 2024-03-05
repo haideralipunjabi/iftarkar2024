@@ -26,4 +26,4 @@ jobs:
           # By default this will be the branch which triggered this workflow
           branch: main
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          wranglerVersion: '3'
+          wranglerVersion: "3"

@@ -12,6 +12,9 @@ const config: Config = {
         primary: "#131836",
         secondary: "#311b92",
       },
+      fontFamily: {
+        fira: ["var(--font-fira)"],
+      },
     },
   },
   plugins: [],
