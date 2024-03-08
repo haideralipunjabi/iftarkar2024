@@ -14,14 +14,14 @@ export default async function Home() {
             className="rounded-full bg-secondary py-2"
             href={`/calendars/${Settings.method}`}
           >
-            <FontAwesomeIcon className="mx-4" icon={faCalendarAlt} />
+            <FontAwesomeIcon className="mx-4 inline-block w-8" icon={faCalendarAlt} />
             Get Ramzan Calendar
           </Link>
           <Link
             className="rounded-full bg-secondary py-2"
             href={`https://haider.id/namazpar`}
           >
-            <FontAwesomeIcon className="mx-4" icon={faMobileAlt} />
+            <FontAwesomeIcon className="mx-4 inline-block w-8" icon={faMobileAlt} />
             Download Mobile App
           </Link>
         </div>

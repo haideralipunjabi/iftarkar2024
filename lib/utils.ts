@@ -74,7 +74,7 @@ export const getIslamicDate = () => {
         }),
       )
       .toJSDate(),
-  );
+  ).replace("BC","AH");
 };
 
 export const arrayRange = (start: number, stop: number, step: number) =>

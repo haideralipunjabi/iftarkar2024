@@ -21,7 +21,7 @@ export default function Timer() {
     setTimeLeft(times.next.diffNow(["days", "hours", "minutes", "second"]));
     setProgress(
       (times.previous.diffNow().milliseconds * -100) /
-        times.next.diff(times.previous).milliseconds,
+      times.next.diff(times.previous).milliseconds,
     );
   };
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function Timer() {
           {upcomingLabel} - {timeEnd?.toFormat("HH:mm a")}
         </span>
         <div className="text-clock font-robotomono text-white">
-          {timeLeft?.toFormat("hh:mm:ss")}
+          {timeLeft?.toFormat("hh:mm:ss") ?? "12:34:56"}
         </div>
         <ProgressBar value={progress} />
       </div>
