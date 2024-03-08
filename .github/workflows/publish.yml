@@ -21,7 +21,7 @@ jobs:
         env:
           API_URL: ${{ secrets.API_URL }}
           NEXT_PUBLIC_RAMADAN_START_DATE: ${{ secrets.NEXT_PUBLIC_RAMADAN_START_DATE }}
-          NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET: ${{ NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET }}
+          NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET: ${{ secrets.NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET }}
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
