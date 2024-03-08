@@ -1,0 +1,42 @@
+@page {
+    size: A4;
+    margin: 0
+}
+
+@media print {
+    nav {
+        display: none !important;
+    }
+
+    main>div {
+        @apply w-full px-8 mt-8 gap-y-2;
+    }
+
+    table {}
+
+    h1 {
+        @apply text-4xl
+    }
+}
+
+@media screen {
+    main>div {
+        @apply px-32 mt-16 gap-y-8
+    }
+
+    h1 {
+        @apply text-5xl;
+    }
+
+    table {
+        @apply text-2xl w-min mx-auto;
+    }
+
+    .offsets {
+        @apply text-2xl mb-16
+    }
+
+    .logo, .footer {
+        display: none;
+    }
+}

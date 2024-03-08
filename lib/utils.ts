@@ -1,7 +1,7 @@
 import { Settings } from "./settings";
 import { DateTime, Duration } from "luxon";
-import { DayLabel } from "@/types";
-
+import { DayLabel, TimingKeys } from "@/types";
+import timings from "@/data/timings.json";
 export function getTimes() {
   const now = DateTime.now();
   const oneDayDuration = Duration.fromObject({ day: 1 });
@@ -41,9 +41,23 @@ export function getTimes() {
   };
 }
 
+export function getIftarSehriForDate(date: DateTime, method: TimingKeys) {
+  const label = date.toFormat("ddLL") as DayLabel;
+  const timing = timings[method].timings[label]
+  return {
+    sehri: DateTime.fromFormat(timing.fajr, "H:mm"),
+    iftar:  DateTime.fromFormat(timing.maghrib, "H:mm")
+  }
+}
 
 export const getIslamicDate = () => { 
   return new Intl.DateTimeFormat('en-IN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(
     DateTime.now().plus(Duration.fromObject({days: Settings.hijriOffset})).toJSDate()
   );
 }
+
+export const arrayRange = (start:number, stop:number, step:number) =>
+    Array.from(
+    { length: (stop - start) / step + 1 },
+    (value, index) => start + index * step
+    );
