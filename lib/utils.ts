@@ -11,15 +11,16 @@ export function getTimes() {
   const timingsToday = Settings.timings[today];
   const timingsTomorrow = Settings.timings[tomorrow];
   const timingsYesterday = Settings.timings[yesterday];
-  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm");
-  const iftarToday = DateTime.fromFormat(timingsToday.maghrib, "H:mm");
+  const offset = Duration.fromObject({minute: Settings.offset})
+  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm").plus(offset);
+  const iftarToday = DateTime.fromFormat(timingsToday.maghrib, "H:mm").plus(offset);
   const sehriTomorrow = DateTime.fromFormat(timingsTomorrow.fajr, "H:mm").plus(
     oneDayDuration,
-  );
+  ).plus(offset);
   const iftarYesterday = DateTime.fromFormat(
     timingsYesterday.maghrib,
     "H:mm",
-  ).minus(oneDayDuration);
+  ).minus(oneDayDuration).plus(offset);
 
   if (now <= sehriToday)
     return {
@@ -38,4 +39,11 @@ export function getTimes() {
     next: sehriTomorrow,
     label: "Sehri",
   };
+}
+
+
+export const getIslamicDate = () => { 
+  return new Intl.DateTimeFormat('en-IN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(
+    DateTime.now().plus(Duration.fromObject({days: Settings.hijriOffset})).toJSDate()
+  );
 }

@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Settings } from "@/lib/settings";
+import { getIslamicDate } from "@/lib/utils";
 
 export default function SettingsModal({
   hidden,
@@ -28,6 +29,7 @@ export default function SettingsModal({
         <SettingsBody>
           <MethodPicker />
           <OffsetPicker />
+          <HijriOffset />
         </SettingsBody>
       </SettingsCard>
     </>
@@ -99,7 +101,6 @@ function OffsetPicker() {
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     Settings.offset = event.target.selectedOptions[0].value;
   };
-  if (!Settings.isUsingCustomMethod) return <></>;
   return (
     <>
       <SettingsFieldLabel>Offset</SettingsFieldLabel>
@@ -114,6 +115,32 @@ function OffsetPicker() {
           </option>
         ))}
       </SettingsSelect>
+    </>
+  );
+}
+function HijriOffset() {
+  const [offset, setOffset] = useState(Settings.hijriOffset);
+  const updateHijriOffset = (change: number) => {
+    Settings.hijriOffset = Settings.hijriOffset + change;
+    setOffset(offset + change);
+  };
+  const decrease = () => {
+    updateHijriOffset(-1);
+  }
+  const increase = () => {
+    updateHijriOffset(1);
+  }
+  return (
+    <>
+      <SettingsFieldLabel>Hijri Offset</SettingsFieldLabel>
+      <div className="flex flex-col text-white items-center text-3xl gap-y-2">
+        <div className="flex flex-row justify-between w-full items-center">
+          <button onClick={() => { decrease() }} className="bg-secondary h-16 w-16 flex items-center justify-center rounded-full">-</button>
+          {offset}
+          <button onClick={() => { increase() }} className="bg-secondary h-16 w-16 flex items-center justify-center rounded-full">+</button>
+        </div>
+        <i className="text-xl">{getIslamicDate()}</i>
+      </div>
     </>
   );
 }

@@ -10,10 +10,7 @@ export class Settings {
   }
 
   static get methodLabel(): string {
-    if (Settings.isUsingCustomMethod) {
       return timings[Settings.method as TimingKeys].name;
-    }
-    return "";
   }
 
   static get offset(): number {
@@ -25,14 +22,12 @@ export class Settings {
   }
 
   static get offsetLabel(): string {
-    if (Settings.isUsingCustomMethod) {
+      if (Settings.offset === 0 ) return "Srinagar"
       return (
         timings[Settings.method as TimingKeys].offsets.find(
           (offset) => offset.offset === Settings.offset,
         )?.name ?? ""
       );
-    }
-    return "";
   }
 
   static get methods(): { [key: string]: string } {
@@ -47,16 +42,21 @@ export class Settings {
     return timings[Settings.method as TimingKeys].timings;
   }
 
-  static get isUsingCustomMethod(): boolean {
-    return Object.keys(timings).includes(Settings.method);
-  }
-
   static get offsets(): { [key: number]: string } {
     return Object.fromEntries(
-      timings[Settings.method as TimingKeys].offsets.map((offset) => [
+      [
+        ...[[0, "Srinagar"]],
+      ...timings[Settings.method as TimingKeys].offsets.map((offset) => [
         offset.offset,
         offset.name,
-      ]),
+      ])],
     );
+  }
+
+  static get hijriOffset() :number {
+    return parseInt(localStorage.getItem("settings-hijriOffset") ?? "0");
+  }
+  static set hijriOffset(value: string | number) {
+    localStorage.setItem("settings-hijriOffset", value.toString());
   }
 }

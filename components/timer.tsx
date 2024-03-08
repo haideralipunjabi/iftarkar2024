@@ -1,5 +1,5 @@
 "use client";
-import { getTimes } from "@/lib/utils";
+import { getIslamicDate, getTimes } from "@/lib/utils";
 import { DateTime, Duration } from "luxon";
 import { useEffect, useState } from "react";
 import ProgressBar from "./progress_bar";
@@ -18,16 +18,20 @@ export default function Timer() {
     setTimeLeft(times.next.diffNow(["days", "hours", "minutes", "second"]));
     setProgress(
       (times.previous.diffNow().milliseconds * -100) /
-        times.next.diff(times.previous).milliseconds,
+      times.next.diff(times.previous).milliseconds,
     );
   };
   useEffect(() => {
+    calculate();
     setInterval(() => {
       calculate();
     }, 1000);
   }, []);
   return (
     <div className="flex flex-col items-center justify-center gap-y-4 text-white">
+      <span className="text-3xl">
+        {getIslamicDate()}
+      </span>
       <span className="text-3xl">
         {Settings.methodLabel} - {Settings.offsetLabel}
       </span>
