@@ -4,11 +4,23 @@
 }
 
 @media print {
+
+  body.print-bw * {
+    color: black !important;
+    background-color: white !important;
+  }
+
+  body.print-bw table td,
+  body.print-bw table th {
+    border: 1px solid black !important;
+  }
+
+
   nav {
     display: none !important;
   }
 
-  main > div {
+  main>div {
     @apply mt-8 w-full gap-y-2 px-8;
   }
 
@@ -30,10 +42,12 @@
   footer {
     display: none;
   }
+
+
 }
 
 @media screen {
-  main > div {
+  main>div {
     @apply gap-y-8 px-4 lg:px-32;
   }
 
@@ -53,4 +67,9 @@
   .footer {
     display: none;
   }
+}
+
+table td,
+th {
+  border: 1px solid white;
 }

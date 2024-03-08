@@ -1,7 +1,7 @@
 export default function ProgressBar({ value }: { value: number }) {
   return (
     <div
-      className="relative flex h-4 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700"
+      className="relative flex h-4 w-full overflow-hidden rounded-full bg-gray-700"
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin={0}
