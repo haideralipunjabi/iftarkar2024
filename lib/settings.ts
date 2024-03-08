@@ -3,12 +3,13 @@ import { TimingKeys } from "@/types";
 import { getLabel } from "./utils";
 
 export class Settings {
+  static prefix = "settingsV2-"
   static get method(): string {
     if (typeof window == "undefined") return Object.keys(timings)[0];
-    return localStorage.getItem("settings-timing") ?? Object.keys(timings)[0];
+    return localStorage.getItem(Settings.prefix+"timing") ?? Object.keys(timings)[0];
   }
   static set method(value) {
-    localStorage.setItem("settings-timing", value);
+    localStorage.setItem(Settings.prefix+"timing", value);
   }
 
   static get methodLabel(): string {
@@ -17,11 +18,11 @@ export class Settings {
 
   static get offset(): number {
     if (typeof window == "undefined") return 0;
-    return parseInt(localStorage.getItem("settings-offset") ?? "0");
+    return parseInt(localStorage.getItem(Settings.prefix+"offset") ?? "0");
   }
 
   static set offset(value: string | number) {
-    localStorage.setItem("settings-offset", value.toString());
+    localStorage.setItem(Settings.prefix+"offset", value.toString());
   }
 
   static get offsetLabel(): string {
@@ -57,9 +58,9 @@ export class Settings {
 
   static get hijriOffset(): number {
     if (typeof window == "undefined") return 0;
-    return parseInt(localStorage.getItem("settings-hijriOffset") ?? "0");
+    return parseInt(localStorage.getItem(Settings.prefix+"hijriOffset") ?? "0");
   }
   static set hijriOffset(value: string | number) {
-    localStorage.setItem("settings-hijriOffset", value.toString());
+    localStorage.setItem(Settings.prefix+"hijriOffset", value.toString());
   }
 }
