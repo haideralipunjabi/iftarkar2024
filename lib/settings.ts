@@ -56,7 +56,7 @@ export class Settings {
   }
 
   static get hijriOffset(): number {
-    if (typeof window == "undefined") 0;
+    if (typeof window == "undefined") return 0;
     return parseInt(localStorage.getItem("settings-hijriOffset") ?? "0");
   }
   static set hijriOffset(value: string | number) {
