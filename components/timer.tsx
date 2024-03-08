@@ -21,7 +21,7 @@ export default function Timer() {
     setTimeLeft(times.next.diffNow(["days", "hours", "minutes", "second"]));
     setProgress(
       (times.previous.diffNow().milliseconds * -100) /
-      times.next.diff(times.previous).milliseconds,
+        times.next.diff(times.previous).milliseconds,
     );
   };
   useEffect(() => {

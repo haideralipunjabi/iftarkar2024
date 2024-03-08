@@ -1,7 +1,7 @@
 "use client";
 export default function PrintButton() {
   return (
-    <div className="flex flex-row gap-x-2 w-min mx-auto">
+    <div className="mx-auto flex w-min flex-row gap-x-2">
       <button
         onClick={() => {
           document.body.classList.remove("print-bw");

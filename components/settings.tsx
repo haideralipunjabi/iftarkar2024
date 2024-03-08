@@ -4,6 +4,7 @@ import { Settings } from "@/lib/settings";
 import { getIslamicDate } from "@/lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { ModalBody, ModalCard, ModalHeader, ModalOverlay } from "./modal";
 
 export default function SettingsModal({
   hidden,
@@ -15,9 +16,9 @@ export default function SettingsModal({
   if (hidden) return <></>;
   return (
     <>
-      <SettingsOverlay />
-      <SettingsCard>
-        <SettingsHeader>
+      <ModalOverlay />
+      <ModalCard>
+        <ModalHeader>
           <h2 className="text-3 text-center text-white">Settings</h2>
           <button
             className="text-2 absolute right-5 top-2 text-white"
@@ -27,8 +28,8 @@ export default function SettingsModal({
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>
-        </SettingsHeader>
-        <SettingsBody>
+        </ModalHeader>
+        <ModalBody>
           <MethodPicker />
           <OffsetPicker />
           <HijriOffset />
@@ -43,35 +44,10 @@ export default function SettingsModal({
               Mobile App
             </a>
           </p>
-        </SettingsBody>
-      </SettingsCard>
+        </ModalBody>
+      </ModalCard>
     </>
   );
-}
-
-function SettingsOverlay() {
-  return (
-    <div className="absolute inset-0  z-10 h-screen w-screen bg-black/50"></div>
-  );
-}
-
-function SettingsCard({ children }: { children?: React.ReactNode }) {
-  return (
-    <div className="absolute inset-0 z-20 m-auto h-min w-5/6 rounded-lg bg-primary sm:w-4/6 lg:w-1/2 xl:w-1/3">
-      {children}
-    </div>
-  );
-}
-function SettingsHeader({ children }: { children?: React.ReactNode }) {
-  return (
-    <div className="relative w-full rounded-t-lg bg-secondary p-2">
-      {children}
-    </div>
-  );
-}
-
-function SettingsBody({ children }: { children?: React.ReactNode }) {
-  return <div className="flex flex-col gap-y-3 p-8">{children}</div>;
 }
 
 function SettingsFieldLabel({ children }: { children?: React.ReactNode }) {

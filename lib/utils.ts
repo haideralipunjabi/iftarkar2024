@@ -66,15 +66,17 @@ export const getIslamicDate = () => {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(
-    DateTime.now()
-      .plus(
-        Duration.fromObject({
-          days: Settings.hijriOffset + systemOffset + extraOffset,
-        }),
-      )
-      .toJSDate(),
-  ).replace("BC","AH");
+  })
+    .format(
+      DateTime.now()
+        .plus(
+          Duration.fromObject({
+            days: Settings.hijriOffset + systemOffset + extraOffset,
+          }),
+        )
+        .toJSDate(),
+    )
+    .replace("BC", "AH");
 };
 
 export const arrayRange = (start: number, stop: number, step: number) =>
