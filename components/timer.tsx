@@ -4,13 +4,16 @@ import { DateTime, Duration } from "luxon";
 import { useEffect, useState } from "react";
 import ProgressBar from "./progress_bar";
 import { Settings } from "@/lib/settings";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import SettingsModal from "./settings";
 
 export default function Timer() {
   const [timeEnd, setTimeEnd] = useState<DateTime>();
   const [timeLeft, setTimeLeft] = useState<Duration>();
   const [upcomingLabel, setUpcomingLabel] = useState("");
   const [progress, setProgress] = useState(0);
-
+  const [settingsHidden, setSettingsHidden] = useState(true);
   const calculate = () => {
     const times = getTimes();
     setTimeEnd(times.next);
@@ -18,7 +21,7 @@ export default function Timer() {
     setTimeLeft(times.next.diffNow(["days", "hours", "minutes", "second"]));
     setProgress(
       (times.previous.diffNow().milliseconds * -100) /
-      times.next.diff(times.previous).milliseconds,
+        times.next.diff(times.previous).milliseconds,
     );
   };
   useEffect(() => {
@@ -28,20 +31,30 @@ export default function Timer() {
     }, 1000);
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center gap-y-4 text-white">
-      <span className="text-3xl">
-        {getIslamicDate()}
-      </span>
-      <span className="text-3xl">
-        {Settings.methodLabel} - {Settings.offsetLabel}
-      </span>
-      <span className="text-3xl">
-        {upcomingLabel} - {timeEnd?.toFormat("HH:mm a")}
-      </span>
-      <div className="font-fira text-8xl text-white">
-        {timeLeft?.toFormat("hh:mm:ss")}
+    <>
+      <div className="flex flex-col items-center justify-center gap-y-4 text-white">
+        <span className="text-3">{getIslamicDate()}</span>
+        <span className="text-3 text-center">
+          {Settings.methodLabel} - {Settings.offsetLabel}{" "}
+          <button
+            className="ml-2"
+            onClick={() => {
+              setSettingsHidden(false);
+            }}
+          >
+            {" "}
+            <FontAwesomeIcon icon={faCog} />
+          </button>
+        </span>
+        <span className="text-3">
+          {upcomingLabel} - {timeEnd?.toFormat("HH:mm a")}
+        </span>
+        <div className="text-clock font-robotomono text-white">
+          {timeLeft?.toFormat("hh:mm:ss")}
+        </div>
+        <ProgressBar value={progress} />
       </div>
-      <ProgressBar value={progress} />
-    </div>
+      <SettingsModal hidden={settingsHidden} setHidden={setSettingsHidden} />
+    </>
   );
 }

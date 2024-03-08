@@ -1,28 +1,25 @@
 "use client";
-import React, { useState } from "react";
-import SettingsModal from "./settings";
-
+import React from "react";
+import Image from "next/image";
+import logo from "@/public/logo_horizontal.svg";
+import Link from "next/link";
 export default function Navbar() {
-  const [settingsHidden, setSettingsHidden] = useState(true);
   return (
     <>
       <NavbarContainer>
-        <NavbarItem
-          onClick={() => {
-            setSettingsHidden(false);
-          }}
-        >
-          Settings
+        <NavbarItem>
+          <Link href="/">
+            <Image className="h-12 md:h-16" src={logo} alt="Iftarkar Logo" />
+          </Link>
         </NavbarItem>
       </NavbarContainer>
-      <SettingsModal hidden={settingsHidden} setHidden={setSettingsHidden} />
     </>
   );
 }
 
 function NavbarContainer({ children }: { children?: React.ReactNode }) {
   return (
-    <nav className="fixed inset-x-0 flex flex-row gap-x-4 bg-secondary px-4 text-lg text-white shadow-lg">
+    <nav className="inset-x-0 flex flex-row justify-center gap-x-4 p-4 text-lg text-white ">
       {children}
     </nav>
   );
@@ -41,5 +38,5 @@ function NavbarItem({
       </button>
     );
   }
-  return <li>{children}</li>;
+  return <span className="p-2">{children}</span>;
 }

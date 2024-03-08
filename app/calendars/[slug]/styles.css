@@ -1,42 +1,56 @@
 @page {
-    size: A4;
-    margin: 0
+  size: A4;
+  margin: 0;
 }
 
 @media print {
-    nav {
-        display: none !important;
-    }
+  nav {
+    display: none !important;
+  }
 
-    main>div {
-        @apply w-full px-8 mt-8 gap-y-2;
-    }
+  main > div {
+    @apply mt-8 w-full gap-y-2 px-8;
+  }
 
-    table {}
+  table {
+    display: block !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-    h1 {
-        @apply text-4xl
-    }
+  .offsets {
+    display: block !important;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  button,
+  footer {
+    display: none;
+  }
 }
 
 @media screen {
-    main>div {
-        @apply px-32 mt-16 gap-y-8
-    }
+  main > div {
+    @apply gap-y-8 px-4 lg:px-32;
+  }
 
-    h1 {
-        @apply text-5xl;
-    }
+  h1 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
 
-    table {
-        @apply text-2xl w-min mx-auto;
-    }
+  table {
+    @apply mx-auto w-min text-lg md:text-xl lg:text-2xl;
+  }
 
-    .offsets {
-        @apply text-2xl mb-16
-    }
+  .offsets {
+    @apply mb-16 text-2xl;
+  }
 
-    .logo, .footer {
-        display: none;
-    }
+  .logo,
+  .footer {
+    display: none;
+  }
 }

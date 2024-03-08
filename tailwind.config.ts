@@ -13,7 +13,8 @@ const config: Config = {
         secondary: "#311b92",
       },
       fontFamily: {
-        fira: ["var(--font-fira)"],
+        roboto: ["var(--font-roboto)"],
+        robotomono: ["var(--font-roboto-mono)"],
       },
     },
   },

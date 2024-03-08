@@ -11,16 +11,19 @@ export function getTimes() {
   const timingsToday = Settings.timings[today];
   const timingsTomorrow = Settings.timings[tomorrow];
   const timingsYesterday = Settings.timings[yesterday];
-  const offset = Duration.fromObject({minute: Settings.offset})
-  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm").plus(offset);
-  const iftarToday = DateTime.fromFormat(timingsToday.maghrib, "H:mm").plus(offset);
-  const sehriTomorrow = DateTime.fromFormat(timingsTomorrow.fajr, "H:mm").plus(
-    oneDayDuration,
-  ).plus(offset);
-  const iftarYesterday = DateTime.fromFormat(
-    timingsYesterday.maghrib,
-    "H:mm",
-  ).minus(oneDayDuration).plus(offset);
+  const offset = Duration.fromObject({ minute: Settings.offset });
+  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm").plus(
+    offset,
+  );
+  const iftarToday = DateTime.fromFormat(timingsToday.maghrib, "H:mm").plus(
+    offset,
+  );
+  const sehriTomorrow = DateTime.fromFormat(timingsTomorrow.fajr, "H:mm")
+    .plus(oneDayDuration)
+    .plus(offset);
+  const iftarYesterday = DateTime.fromFormat(timingsYesterday.maghrib, "H:mm")
+    .minus(oneDayDuration)
+    .plus(offset);
 
   if (now <= sehriToday)
     return {
@@ -43,21 +46,47 @@ export function getTimes() {
 
 export function getIftarSehriForDate(date: DateTime, method: TimingKeys) {
   const label = date.toFormat("ddLL") as DayLabel;
-  const timing = timings[method].timings[label]
+  const timing = timings[method].timings[label];
   return {
     sehri: DateTime.fromFormat(timing.fajr, "H:mm"),
-    iftar:  DateTime.fromFormat(timing.maghrib, "H:mm")
-  }
+    iftar: DateTime.fromFormat(timing.maghrib, "H:mm"),
+  };
 }
 
-export const getIslamicDate = () => { 
-  return new Intl.DateTimeFormat('en-IN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(
-    DateTime.now().plus(Duration.fromObject({days: Settings.hijriOffset})).toJSDate()
+export const getIslamicDate = () => {
+  const systemOffset = parseInt(
+    process.env.NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET ?? "0",
   );
-}
+  const { iftar } = getIftarSehriForDate(
+    DateTime.now(),
+    Settings.method as TimingKeys,
+  );
+  const extraOffset = DateTime.now() > iftar ? 1 : 0;
+  return new Intl.DateTimeFormat("en-IN-u-ca-islamic", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(
+    DateTime.now()
+      .plus(
+        Duration.fromObject({
+          days: Settings.hijriOffset + systemOffset + extraOffset,
+        }),
+      )
+      .toJSDate(),
+  );
+};
 
-export const arrayRange = (start:number, stop:number, step:number) =>
-    Array.from(
+export const arrayRange = (start: number, stop: number, step: number) =>
+  Array.from(
     { length: (stop - start) / step + 1 },
-    (value, index) => start + index * step
-    );
+    (value, index) => start + index * step,
+  );
+
+export const getLabel = (method: string) => {
+  if (method === "raheemiya")
+    return `Fiqah Hanafiya (${timings[method as TimingKeys].name})`;
+  if (method === "etk")
+    return `Fiqah Jaffaria (${timings[method as TimingKeys].name})`;
+  return timings[method as TimingKeys].name;
+};
