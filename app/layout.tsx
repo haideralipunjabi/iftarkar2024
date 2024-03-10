@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
-import { Roboto, Roboto_Mono } from "next/font/google";
+import { Amiri, Roboto, Roboto_Mono } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { GoogleTagManager } from "@next/third-parties/google";
@@ -24,6 +24,12 @@ const roboto_mono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
+const amiri = Amiri({
+  subsets: ["arabic"],
+  weight: "400",
+  variable: "--font-amiri",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`h-full min-h-screen bg-primary ${roboto.variable} ${roboto_mono.variable} flex flex-col justify-between font-roboto`}
+        className={`h-full min-h-screen bg-primary ${roboto.variable} ${roboto_mono.variable} ${amiri.variable} flex flex-col justify-between font-roboto`}
       >
         <Navbar />
         {children}

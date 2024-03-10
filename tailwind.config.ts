@@ -15,6 +15,7 @@ const config: Config = {
       fontFamily: {
         roboto: ["var(--font-roboto)"],
         robotomono: ["var(--font-roboto-mono)"],
+        amiri: ["var(--font-amiri)"],
       },
     },
   },

@@ -1,5 +1,6 @@
 "use client";
 import CalendarModal from "@/components/calendarsModal";
+import { DuasContainer } from "@/components/duas";
 import Timer from "@/components/timer";
 import { faCalendarAlt, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +12,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex items-center justify-center">
-        <div className="px-4 sm:px-8 md:px-32 lg:px-64">
+      <main className="mb-16 flex flex-col items-center justify-center gap-y-8 px-4 sm:px-8 md:px-32 lg:px-64">
+        <div className="">
           <Timer />
           <div className="text-3 mt-8 flex flex-col gap-y-3 text-center text-white">
             <button
@@ -39,6 +40,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <DuasContainer />
       </main>
       <CalendarModal hidden={modalHidden} setHidden={setModalHidden} />
     </>
