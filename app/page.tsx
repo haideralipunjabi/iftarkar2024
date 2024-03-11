@@ -16,6 +16,7 @@ export default function Home() {
         <div className="">
           <Timer />
           <div className="text-3 mt-8 flex flex-col gap-y-3 text-center text-white">
+            <p>Note: Iftarkar is now part of NamazPar mobile app, <br /> download it from the link below</p>
             <button
               className="rounded-full bg-secondary py-2"
               onClick={() => {
@@ -36,7 +37,7 @@ export default function Home() {
                 className="mx-4 inline-block w-8"
                 icon={faMobileAlt}
               />
-              Download Mobile App
+              Download new NamazPar Mobile App
             </Link>
           </div>
         </div>
