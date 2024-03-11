@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "ts-node ./lib/api.ts && ts-node --esm ./lib/ical.mjs",
+    "prebuild": "ts-node ./lib/api.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
