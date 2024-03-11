@@ -5,6 +5,11 @@ loadEnvConfig(process.cwd());
 function getTimingsData() {
   const API_URL = process.env.API_URL;
   if (!API_URL) throw "API URL not found!";
+  fs.rmSync("data", {
+    recursive: true,
+    force: true,
+  });
+
   fs.mkdirSync("data");
   fetch(API_URL)
     .then((response) => response.json())

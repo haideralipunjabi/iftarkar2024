@@ -6,18 +6,33 @@ import "./styles.css";
 import Image from "next/image";
 import logo from "@/public/logo_horizontal.svg";
 import PrintButton from "@/components/printButtons";
+import ICalModal from "@/components/icalModal";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const startDate = DateTime.fromFormat(
     process.env.NEXT_PUBLIC_RAMADAN_START_DATE!,
     "yyyy-MM-dd",
   );
+
+  const offsets = [
+    {
+      name: "Srinagar",
+      offset: 0,
+    },
+    ...timings[params.slug as TimingKeys].offsets,
+  ];
+
   return (
     <main className="flex w-full justify-center text-white">
       <div className="flex w-full flex-col">
         <Image className="logo h-8" src={logo} alt="Iftarkar Logo" />
         <h1 className="text-center">{getLabel(params.slug)}</h1>
         <PrintButton />
+        <ICalModal
+          name={timings[params.slug as TimingKeys].name}
+          offsets={offsets}
+        />
+
         <table className=" hidden text-center md:block">
           <thead>
             <tr>
