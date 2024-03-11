@@ -7,6 +7,7 @@ import Image from "next/image";
 import logo from "@/public/logo_horizontal.svg";
 import PrintButton from "@/components/printButtons";
 import ICalModal from "@/components/icalModal";
+import classNames from "classnames";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const startDate = DateTime.fromFormat(
@@ -63,7 +64,13 @@ export default function Page({ params }: { params: { slug: string } }) {
           </tbody>
         </table>
         <div className="offsets hidden md:block">
-          <h4 className="text-center text-white">Offsets:</h4>
+          <h4
+            className={classNames("text-center text-white", {
+              hidden: timings[params.slug as TimingKeys].offsets.length === 0,
+            })}
+          >
+            Offsets:
+          </h4>
           <p className="flex flex-row flex-wrap justify-center gap-2 gap-x-8">
             {timings[params.slug as TimingKeys].offsets.map((offset) => (
               <span key={offset.offset}>

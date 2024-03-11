@@ -16,6 +16,7 @@ export default function Timer() {
   const [settingsHidden, setSettingsHidden] = useState(true);
   const calculate = () => {
     const times = getTimes();
+    if (!times) return;
     setTimeEnd(times.next);
     setUpcomingLabel(times.label);
     setTimeLeft(times.next.diffNow(["days", "hours", "minutes", "second"]));

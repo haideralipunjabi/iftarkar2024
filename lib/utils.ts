@@ -1,15 +1,26 @@
 import { Settings } from "./settings";
 import { DateTime, Duration } from "luxon";
-import { DayLabel, TimingKeys } from "@/types";
+import { TimingKeys } from "@/types";
 import timings from "@/data/timings.json";
 export function getTimes() {
   const now = DateTime.now();
   const oneDayDuration = Duration.fromObject({ day: 1 });
-  const today = now.toFormat("ddLL") as DayLabel;
-  const yesterday = now.minus(oneDayDuration).toFormat("ddLL") as DayLabel;
-  const tomorrow = now.plus(oneDayDuration).toFormat("ddLL") as DayLabel;
+  const today = now.toFormat("ddLL");
+  const yesterday = now.minus(oneDayDuration).toFormat("ddLL");
+  const tomorrow = now.plus(oneDayDuration).toFormat("ddLL");
+  if (
+    !Object.keys(Settings.timings).includes(today) ||
+    !Object.keys(Settings.timings).includes(tomorrow) ||
+    !Object.keys(Settings.timings).includes(yesterday)
+  ) {
+    Settings.method = Object.keys(timings)[0];
+    return;
+  }
+  // @ts-ignore
   const timingsToday = Settings.timings[today];
+  // @ts-ignore
   const timingsTomorrow = Settings.timings[tomorrow];
+  // @ts-ignore
   const timingsYesterday = Settings.timings[yesterday];
   const offset = Duration.fromObject({ minute: Settings.offset });
   const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm").plus(
@@ -45,7 +56,8 @@ export function getTimes() {
 }
 
 export function getIftarSehriForDate(date: DateTime, method: TimingKeys) {
-  const label = date.toFormat("ddLL") as DayLabel;
+  const label = date.toFormat("ddLL");
+  // @ts-ignore
   const timing = timings[method].timings[label];
   return {
     sehri: DateTime.fromFormat(timing.fajr, "H:mm"),
