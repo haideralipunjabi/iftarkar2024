@@ -33,7 +33,7 @@ export default function Home() {
               Get Ramzan Calendar{" "}
             </button>
             <Link
-              className="rounded-full bg-secondary py-2"
+              className="rounded-full bg-secondary py-2 px-4"
               href={`https://haider.id/namazpar`}
             >
               <FontAwesomeIcon
