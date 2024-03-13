@@ -66,29 +66,36 @@ export function getIftarSehriForDate(date: DateTime, method: TimingKeys) {
 }
 
 export const getIslamicDate = () => {
-  const systemOffset = parseInt(
-    process.env.NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET ?? "0",
-  );
+  // const systemOffset = parseInt(
+  //   process.env.NEXT_PUBLIC_SYSTEM_HIJRI_DATE_OFFSET ?? "0",
+  // );
+  // console.log(systemOffset)
   const { iftar } = getIftarSehriForDate(
     DateTime.now(),
     Settings.method as TimingKeys,
   );
   const extraOffset = DateTime.now() > iftar ? 1 : 0;
-  return new Intl.DateTimeFormat("en-IN-u-ca-islamic", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  })
-    .format(
-      DateTime.now()
-        .plus(
-          Duration.fromObject({
-            days: Settings.hijriOffset + systemOffset + extraOffset,
-          }),
-        )
-        .toJSDate(),
-    )
-    .replace("BC", "AH");
+  // return new Intl.DateTimeFormat("en-IN-u-ca-islamic", {
+  //   day: "numeric",
+  //   month: "long",
+  //   year: "numeric",
+  // })
+  //   .format(
+  //     DateTime.now()
+  //       .plus(
+  //         Duration.fromObject({
+  //           days: Settings.hijriOffset + systemOffset + extraOffset,
+  //         }),
+  //       )
+  //       .toJSDate(),
+  //   )
+  //   .replace("BC", "AH");
+  let diff: Duration = DateTime.now().diff(
+    DateTime.fromFormat("12-03-2024", "dd-MM-yyyy"),
+    ["days", "hours"],
+  );
+    if(diff.days > 29) return "";
+  return `${diff.days + extraOffset + 1} Ramadan 1445 AH`;
 };
 
 export const arrayRange = (start: number, stop: number, step: number) =>

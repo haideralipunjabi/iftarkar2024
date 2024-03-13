@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Settings } from "@/lib/settings";
-import { getIslamicDate } from "@/lib/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { ModalBody, ModalCard, ModalHeader, ModalOverlay } from "./modal";
 
 export default function SettingsModal({
@@ -32,7 +31,7 @@ export default function SettingsModal({
         <ModalBody>
           <MethodPicker />
           <OffsetPicker />
-          <HijriOffset />
+          {/* <HijriOffset /> */}
           <p className="text-2 text-white">
             Looking for more options? Check out our{" "}
             <a
@@ -107,43 +106,43 @@ function OffsetPicker() {
     </>
   );
 }
-function HijriOffset() {
-  const [offset, setOffset] = useState(Settings.hijriOffset);
-  const updateHijriOffset = (change: number) => {
-    Settings.hijriOffset = Settings.hijriOffset + change;
-    setOffset(offset + change);
-  };
-  const decrease = () => {
-    updateHijriOffset(-1);
-  };
-  const increase = () => {
-    updateHijriOffset(1);
-  };
-  return (
-    <>
-      <SettingsFieldLabel>Hijri Offset</SettingsFieldLabel>
-      <div className="text-3 flex flex-col items-center gap-y-2 text-white">
-        <div className="flex w-full flex-row items-center justify-between">
-          <button
-            onClick={() => {
-              decrease();
-            }}
-            className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
-          >
-            <FontAwesomeIcon icon={faMinus} />
-          </button>
-          {offset}
-          <button
-            onClick={() => {
-              increase();
-            }}
-            className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
-          >
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
-        </div>
-        <i className="text-lg md:text-xl">{getIslamicDate()}</i>
-      </div>
-    </>
-  );
-}
+// function HijriOffset() {
+//   const [offset, setOffset] = useState(Settings.hijriOffset);
+//   const updateHijriOffset = (change: number) => {
+//     Settings.hijriOffset = Settings.hijriOffset + change;
+//     setOffset(offset + change);
+//   };
+//   const decrease = () => {
+//     updateHijriOffset(-1);
+//   };
+//   const increase = () => {
+//     updateHijriOffset(1);
+//   };
+//   return (
+//     <>
+//       <SettingsFieldLabel>Hijri Offset</SettingsFieldLabel>
+//       <div className="text-3 flex flex-col items-center gap-y-2 text-white">
+//         <div className="flex w-full flex-row items-center justify-between">
+//           <button
+//             onClick={() => {
+//               decrease();
+//             }}
+//             className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
+//           >
+//             <FontAwesomeIcon icon={faMinus} />
+//           </button>
+//           {offset}
+//           <button
+//             onClick={() => {
+//               increase();
+//             }}
+//             className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
+//           >
+//             <FontAwesomeIcon icon={faPlus} />
+//           </button>
+//         </div>
+//         <i className="text-lg md:text-xl">{getIslamicDate()}</i>
+//       </div>
+//     </>
+//   );
+// }
