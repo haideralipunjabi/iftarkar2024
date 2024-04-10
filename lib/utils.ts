@@ -94,7 +94,7 @@ export const getIslamicDate = () => {
     DateTime.fromFormat("12-03-2024", "dd-MM-yyyy"),
     ["days", "hours"],
   );
-    if(diff.days > 29) return "";
+  if (diff.days > 29) return "";
   return `${diff.days + extraOffset + 1} Ramadan 1445 AH`;
 };
 
