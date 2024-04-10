@@ -34,7 +34,7 @@ export default function Timer() {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-y-4 text-white">
-        <span className="text-3">{getIslamicDate()}</span>
+        {/* <span className="text-3">{getIslamicDate()}</span> */}
         <span className="text-3 text-center">
           {Settings.methodLabel} - {Settings.offsetLabel}{" "}
           <button
