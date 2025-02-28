@@ -5,7 +5,6 @@ import Timer from "@/components/timer";
 import {
   faCalendarAlt,
   faMobileAlt,
-  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
