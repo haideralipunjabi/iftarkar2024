@@ -23,18 +23,37 @@ export default function Page({ params }: { params: { slug: string } }) {
     ...timings[params.slug as TimingKeys].offsets,
   ];
 
+  const pdfs = {
+    raheemiya:
+      "https://drive.google.com/file/d/1hHd5bhDX4UgbOFUT9tOOx1J5QVdZnp9A/view?usp=sharing",
+    etk: "https://drive.google.com/file/d/1zRuUZFMCbhsC9Sj5uGAfJu2Dx2lxj2pp/view?usp=sharing",
+    ahlehadees:
+      "https://drive.google.com/file/d/1CqI7wdT8MtXQww7wTeEUDkQESwXntJiw/view?usp=sharing",
+    tsajk:
+      "https://drive.google.com/file/d/1gLPD9Cm8WF5rORsAlbnTk2zC7Zn6ky0a/view?usp=sharing",
+  };
+
   return (
     <main className="flex w-full justify-center text-white">
       <div className="flex w-full flex-col">
         <Image className="logo h-8" src={logo} alt="Iftarkar Logo" />
         <h1 className="text-center">{getLabel(params.slug)}</h1>
         <PrintButton />
-        <ICalModal
-          name={timings[params.slug as TimingKeys].name}
-          offsets={offsets}
-        />
-
-        <table className=" hidden text-center md:block">
+        <div className="mx-auto flex w-min flex-row gap-x-2">
+          <a
+            className="text-2 mx-auto w-min rounded-full bg-secondary px-16 py-2 text-center"
+            href={pdfs[params.slug as keyof typeof pdfs]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download PDF
+          </a>
+          <ICalModal
+            name={timings[params.slug as TimingKeys].name}
+            offsets={offsets}
+          />
+        </div>
+        <table className="text-center md:block">
           <thead>
             <tr>
               <th className="px-8">Day</th>
