@@ -1,7 +1,7 @@
 {
   "short_name": "Iftarkar",
   "url": "www.iftarkar.com",
-  "description": "Iftarkar is your companion app for 2024's Ramzan. Daily Countdown Timer, Iftar and Sehri Timings for Jammu, Kashmir, Kargil and Ladakh.",
+  "description": "Iftarkar is your companion app for Ramzan. Daily Countdown Timer, Iftar and Sehri Timings for Jammu, Kashmir, Kargil and Ladakh.",
   "background_color": "#eceef8",
   "display": "standalone",
   "scope": "/",

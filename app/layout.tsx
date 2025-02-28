@@ -9,7 +9,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 export const metadata: Metadata = {
   title: "Iftarkar",
   description:
-    "Iftarkar is your companion app for 2024's Ramzan. Daily Countdown Timer, Iftar and Sehri Timings for Jammu, Kashmir, Kargil and Ladakh.",
+    "Iftarkar is your companion app for Ramzan. Daily Countdown Timer, Iftar and Sehri Timings for Jammu, Kashmir, Kargil and Ladakh.",
 };
 
 const roboto = Roboto({
