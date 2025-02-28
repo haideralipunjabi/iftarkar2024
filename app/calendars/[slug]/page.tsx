@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const offsets = [
     {
-      name: "Srinagar",
+      name: params.slug != "tsajk" ? "Srinagar" : "Anantnag",
       offset: 0,
     },
     ...timings[params.slug as TimingKeys].offsets,
