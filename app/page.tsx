@@ -2,10 +2,7 @@
 import CalendarModal from "@/components/calendarsModal";
 import { DuasContainer } from "@/components/duas";
 import Timer from "@/components/timer";
-import {
-  faCalendarAlt,
-  faMobileAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";

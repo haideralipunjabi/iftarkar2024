@@ -4,7 +4,7 @@ import React from "react";
 import { Amiri, Roboto, Roboto_Mono } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "Iftarkar",
@@ -44,7 +44,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <GoogleTagManager gtmId="G-6TQC29XNQN" />
+      <GoogleAnalytics gaId="G-6TQC29XNQN" />
     </html>
   );
 }
