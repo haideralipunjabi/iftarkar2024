@@ -42,7 +42,7 @@ export function DuasContainer() {
               }
             }}
             className={classNames(
-              "text-2 w-full bg-black/20 py-4 text-center text-white shadow-sm",
+              "text-2 w-full bg-black/20 py-4 text-center text-white shadow",
               {
                 " bg-secondary/50": activeTab === idx,
                 "rounded-l-full": idx == 0,

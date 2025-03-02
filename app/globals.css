@@ -1,31 +1,6 @@
-@import 'tailwindcss';
-
-@theme {
-  --color-primary: #131836;
-  --color-secondary: #311b92;
-
-  --font-roboto: var(--font-roboto);
-  --font-robotomono: var(--font-roboto-mono);
-  --font-amiri: var(--font-amiri);
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .text-5 {
   @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
