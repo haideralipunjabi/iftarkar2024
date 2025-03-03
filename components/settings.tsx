@@ -20,7 +20,7 @@ export default function SettingsModal({
         <ModalHeader>
           <h2 className="text-3 text-center text-white">Settings</h2>
           <button
-            className="text-2 absolute right-5 top-2 text-white"
+            className="text-2 absolute top-2 right-5 text-white"
             onClick={() => {
               setHidden(true);
             }}
@@ -35,7 +35,7 @@ export default function SettingsModal({
           <p className="text-2 text-white">
             Looking for more options? Check out our{" "}
             <a
-              className="underline	 hover:cursor-pointer"
+              className="underline hover:cursor-pointer"
               href="https://haider.id/namazpar"
               target="_blank"
               rel="noopener noreferrer"
@@ -61,7 +61,7 @@ function SettingsSelect({
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }) {
   return (
-    <select className="w-full rounded-lg p-2" onChange={onChange}>
+    <select className="w-full rounded-lg bg-white p-2" onChange={onChange}>
       {children}
     </select>
   );

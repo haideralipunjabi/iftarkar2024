@@ -2,8 +2,7 @@
   "extends": [
     "eslint:recommended",
     "next",
-    "prettier",
-    "plugin:tailwindcss/recommended"
+    "prettier"
   ],
-  "plugins": ["react", "tailwindcss", "import", "jsx-a11y"]
+  "plugins": ["react", "import", "jsx-a11y"]
 }
