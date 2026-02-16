@@ -50,6 +50,11 @@ export default function Timer() {
         <span className="text-3">
           {upcomingLabel} - {timeEnd?.toFormat("HH:mm a")}
         </span>
+        {Settings.method == "etk" && (
+          <span className="text-2">
+            Sehri ends 10 minutes before Fajr for ahtiyat.
+          </span>
+        )}
         <div className="text-clock font-robotomono text-white">
           {timeLeft?.toFormat("hh:mm:ss") ?? "12:34:56"}
         </div>

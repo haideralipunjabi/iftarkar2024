@@ -28,6 +28,13 @@ export class Settings {
     localStorage.setItem(Settings.prefix + "offset", value.toString());
   }
 
+  static get sehriOffet() {
+    if (Settings.method == "etk") {
+      return -10;
+    }
+    return 0;
+  }
+
   static get offsetLabel(): string {
     if (Settings.offset === 0) return "Srinagar";
     return (

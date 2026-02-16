@@ -23,15 +23,17 @@ export function getTimes() {
   // @ts-ignore
   const timingsYesterday = Settings.timings[yesterday];
   const offset = Duration.fromObject({ minute: Settings.offset });
-  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm").plus(
-    offset,
-  );
+  const sehriOffset = Duration.fromObject({ minute: Settings.sehriOffet });
+  const sehriToday = DateTime.fromFormat(timingsToday.fajr, "H:mm")
+    .plus(offset)
+    .plus(sehriOffset);
   const iftarToday = DateTime.fromFormat(timingsToday.maghrib, "H:mm").plus(
     offset,
   );
   const sehriTomorrow = DateTime.fromFormat(timingsTomorrow.fajr, "H:mm")
     .plus(oneDayDuration)
-    .plus(offset);
+    .plus(offset)
+    .plus(sehriOffset);
   const iftarYesterday = DateTime.fromFormat(timingsYesterday.maghrib, "H:mm")
     .minus(oneDayDuration)
     .plus(offset);
@@ -59,8 +61,9 @@ export function getIftarSehriForDate(date: DateTime, method: TimingKeys) {
   const label = date.toFormat("ddLL");
   // @ts-ignore
   const timing = timings[method].timings[label];
+  const offset = Duration.fromObject({ minute: method == "etk" ? -10 : 0 });
   return {
-    sehri: DateTime.fromFormat(timing.fajr, "H:mm"),
+    sehri: DateTime.fromFormat(timing.fajr, "H:mm").plus(offset),
     iftar: DateTime.fromFormat(timing.maghrib, "H:mm"),
   };
 }
@@ -91,11 +94,14 @@ export const getIslamicDate = () => {
   //   )
   //   .replace("BC", "AH");
   let diff: Duration = DateTime.now().diff(
-    DateTime.fromFormat("12-03-2024", "dd-MM-yyyy"),
+    DateTime.fromFormat(
+      process.env.NEXT_PUBLIC_RAMADAN_START_DATE!,
+      "yyyy-MM-dd",
+    ),
     ["days", "hours"],
   );
-  if (diff.days > 29) return "";
-  return `${diff.days + extraOffset + 1} Ramadan 1445 AH`;
+  if (diff.days > 29 || diff.days < 0) return "";
+  return `${diff.days + extraOffset + 1} Ramadan 1447 AH`;
 };
 
 export const arrayRange = (start: number, stop: number, step: number) =>

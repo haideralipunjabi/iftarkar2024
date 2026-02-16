@@ -82,6 +82,15 @@ export default function Page({ params }: { params: { slug: string } }) {
             })}
           </tbody>
         </table>
+        {
+          <div
+            className={classNames("text-center text-white", {
+              hidden: params.slug != "etk",
+            })}
+          >
+            <h4>Note: Sehri ends 10 minutes before Fajr for ahtiyat.</h4>
+          </div>
+        }
         <div className="offsets hidden md:block">
           <h4
             className={classNames("text-center text-white", {
