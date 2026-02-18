@@ -46,17 +46,6 @@ export default function Home() {
               />
               Download NamazPar Mobile App
             </Link>
-            <Link
-              className="rounded-full bg-secondary px-4 py-2"
-              href={`https://kerhouse.cc/`}
-              target="_blank"
-            >
-              <FontAwesomeIcon
-                className="mx-4 inline-block w-8"
-                icon={faMoon}
-              />
-              Donate & Download Eid Postcards!{" "}
-            </Link>
           </div>
         </div>
         <DuasContainer />
