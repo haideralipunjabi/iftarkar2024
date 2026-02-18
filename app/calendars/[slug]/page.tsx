@@ -31,7 +31,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       "https://drive.google.com/file/d/1vbgVEY1UApIcYQE9h95Awsj7MBmuAWPW/view?usp=drive_link",
     tsajk:
       "https://drive.google.com/file/d/1NEzsc7LmdiiuKQA4ohmFuNL39db_-qTI/view?usp=drive_link",
-    ajksa: "https://drive.google.com/file/d/1_wCJSliSM8EcOkxGtOSgNj3roNG7NAeX/view?usp=drive_link"
+    ajksa:
+      "https://drive.google.com/file/d/1_wCJSliSM8EcOkxGtOSgNj3roNG7NAeX/view?usp=drive_link",
   };
 
   return (
