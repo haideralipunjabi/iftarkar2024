@@ -25,12 +25,13 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const pdfs = {
     raheemiya:
-      "https://drive.google.com/file/d/1hHd5bhDX4UgbOFUT9tOOx1J5QVdZnp9A/view?usp=sharing",
-    etk: "https://drive.google.com/file/d/1zRuUZFMCbhsC9Sj5uGAfJu2Dx2lxj2pp/view?usp=sharing",
+      "https://drive.google.com/file/d/1QhF4_7nsZjQtFg_rWcaktjSRj-pkvAXJ/view?usp=drive_link",
+    etk: "https://drive.google.com/file/d/14C4o_FGC91SNzUFZb8ztIUTh6287LBu6/view?usp=drive_link",
     ahlehadees:
-      "https://drive.google.com/file/d/1CqI7wdT8MtXQww7wTeEUDkQESwXntJiw/view?usp=sharing",
+      "https://drive.google.com/file/d/1vbgVEY1UApIcYQE9h95Awsj7MBmuAWPW/view?usp=drive_link",
     tsajk:
-      "https://drive.google.com/file/d/1gLPD9Cm8WF5rORsAlbnTk2zC7Zn6ky0a/view?usp=sharing",
+      "https://drive.google.com/file/d/1NEzsc7LmdiiuKQA4ohmFuNL39db_-qTI/view?usp=drive_link",
+    ajksa: "https://drive.google.com/file/d/1_wCJSliSM8EcOkxGtOSgNj3roNG7NAeX/view?usp=drive_link"
   };
 
   return (
