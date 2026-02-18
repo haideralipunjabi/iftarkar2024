@@ -93,6 +93,15 @@ export default function Page({ params }: { params: { slug: string } }) {
             </h4>
           </div>
         }
+        <div
+            className={classNames("text-center text-white", {
+              hidden: params.slug != "ajksa",
+            })}
+          >
+            <h4>
+              Note: Sehri ends 5 minutes before Fajr for ahtiyat / imsak (The timings above are for Fajr).
+            </h4>
+          </div>
         <div className="offsets hidden md:block">
           <h4
             className={classNames("text-center text-white", {

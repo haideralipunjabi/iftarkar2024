@@ -32,6 +32,9 @@ export class Settings {
     if (Settings.method == "etk") {
       return -10;
     }
+    if (Settings.method == "ajksa") {
+      return -5;
+    }
     return 0;
   }
 

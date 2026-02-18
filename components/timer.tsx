@@ -55,6 +55,11 @@ export default function Timer() {
             Sehri ends 10 minutes before Fajr for ahtiyat.
           </span>
         )}
+        {Settings.method == "ajksa" && (
+          <span className="text-2">
+            Sehri ends 5 minutes before Fajr for ahtiyat.
+          </span>
+        )}
         <div className="text-clock font-robotomono text-white">
           {timeLeft?.toFormat("hh:mm:ss") ?? "12:34:56"}
         </div>
