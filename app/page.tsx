@@ -2,7 +2,7 @@
 import CalendarModal from "@/components/calendarsModal";
 import { DuasContainer } from "@/components/duas";
 import Timer from "@/components/timer";
-import { faCalendarAlt, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,39 +12,41 @@ export default function Home() {
 
   return (
     <>
-      <main className="mb-16 flex flex-col items-center justify-center gap-y-8 px-4 sm:px-8 md:px-32 lg:px-64">
-        <div className="">
-          <Timer />
-          <div className="text-3 mt-8 flex flex-col gap-y-3 text-center text-white">
-            <p>
-              Note: Iftarkar is now part of NamazPar mobile app, <br /> download
-              it from the link below
-            </p>
+      <main className="mx-auto flex w-full max-w-lg flex-col gap-y-6 px-4 py-8 sm:py-10">
+        <Timer />
+
+        <div id="duas" className="scroll-mt-24">
+          <DuasContainer />
+        </div>
+
+        {/* CTA area */}
+        <div className="flex animate-fade-up-d3 flex-col items-center gap-y-3">
+          <p className="text-sm text-ink-muted">
+            Iftarkar is now part of{" "}
+            <span className="font-semibold text-ink">NamazPar</span>
+          </p>
+
+          <div className="flex w-full flex-col gap-2.5 sm:flex-row">
             <button
-              className="rounded-full bg-secondary py-2"
-              onClick={() => {
-                setModalHidden(false);
-              }}
+              className="flex flex-1 items-center justify-center gap-x-2 rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white shadow-card transition-all duration-200 hover:bg-accent-dark hover:shadow-card-hover"
+              onClick={() => setModalHidden(false)}
             >
-              <FontAwesomeIcon
-                className="mx-4 inline-block w-8"
-                icon={faCalendarAlt}
-              />
-              Get Ramzan Calendar{" "}
+              <FontAwesomeIcon className="w-3.5" icon={faCalendarAlt} />
+              Get Ramzan Calendar
             </button>
+
             <Link
-              className="rounded-full bg-secondary px-4 py-2"
-              href={`https://haider.id/namazpar`}
+              className="group flex flex-1 items-center justify-center gap-x-2 rounded-xl border border-border bg-card px-5 py-3 text-sm font-medium text-ink-secondary shadow-card transition-all duration-200 hover:border-accent/30 hover:text-accent hover:shadow-card-hover"
+              href="https://haider.id/namazpar"
             >
+              Download NamazPar
               <FontAwesomeIcon
-                className="mx-4 inline-block w-8"
-                icon={faMobileAlt}
+                className="w-3 transition-transform duration-200 group-hover:translate-x-0.5"
+                icon={faArrowRight}
               />
-              Download NamazPar Mobile App
             </Link>
           </div>
         </div>
-        <DuasContainer />
       </main>
       <CalendarModal hidden={modalHidden} setHidden={setModalHidden} />
     </>

@@ -1,9 +1,14 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ModalOverlay, ModalCard, ModalHeader, ModalBody } from "./modal";
+import {
+  ModalOverlay,
+  ModalCard,
+  ModalHeader,
+  ModalBody,
+  ModalClose,
+} from "./modal";
 import React from "react";
 import timings from "@/data/timings.json";
 import Link from "next/link";
+
 export default function CalendarModal({
   hidden,
   setHidden,
@@ -17,24 +22,20 @@ export default function CalendarModal({
       <ModalOverlay />
       <ModalCard>
         <ModalHeader>
-          <h2 className="text-3 text-center text-white">Calendars</h2>
-          <button
-            className="text-2 absolute right-5 top-2 text-white"
-            onClick={() => {
-              setHidden(true);
-            }}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
+          <h2 className="text-lg font-semibold text-white">Calendars</h2>
+          <ModalClose onClick={() => setHidden(true)} />
         </ModalHeader>
         <ModalBody>
           {Object.entries(timings).map(([key, value]) => (
             <Link
-              className="text-3 text-white underline hover:cursor-pointer"
+              className="group flex items-center justify-between rounded-lg border border-border bg-bg px-4 py-3 text-sm font-medium text-ink transition-all duration-200 hover:border-accent/30 hover:bg-accent-light hover:text-accent"
               key={key}
               href={`/calendars/${key}`}
             >
               {value.name}
+              <span className="text-ink-muted transition-colors group-hover:text-accent">
+                →
+              </span>
             </Link>
           ))}
         </ModalBody>

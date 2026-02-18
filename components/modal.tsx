@@ -1,26 +1,42 @@
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export function ModalOverlay() {
-  return (
-    <div className="absolute inset-0  z-10 h-screen w-screen bg-black/50"></div>
-  );
+  return <div className="fixed inset-0 z-40 bg-black/30" />;
 }
 
-export function ModalCard({ children }: { children?: React.ReactNode }) {
+export function ModalCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="absolute inset-0 z-20 m-auto h-min w-5/6 rounded-lg bg-primary sm:w-4/6 lg:w-1/2 xl:w-1/3">
-      {children}
-    </div>
-  );
-}
-export function ModalHeader({ children }: { children?: React.ReactNode }) {
-  return (
-    <div className="relative w-full rounded-t-lg bg-secondary p-2">
-      {children}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="card w-full max-w-md animate-fade-up overflow-hidden shadow-card-hover">
+        {children}
+      </div>
     </div>
   );
 }
 
-export function ModalBody({ children }: { children?: React.ReactNode }) {
-  return <div className="flex flex-col gap-y-3 p-8">{children}</div>;
+export function ModalHeader({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative border-b border-border bg-accent px-6 py-4">
+      {children}
+    </div>
+  );
+}
+
+export function ModalBody({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-y-3 p-5">{children}</div>
+  );
+}
+
+export function ModalClose({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-white/80 transition-colors hover:text-white"
+      onClick={onClick}
+    >
+      <FontAwesomeIcon icon={faTimes} className="text-lg" />
+    </button>
+  );
 }

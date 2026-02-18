@@ -1,5 +1,7 @@
+"use client";
 import React, { useState } from "react";
 import classNames from "classnames";
+
 const Duas = [
   {
     title: "Dua Sahar",
@@ -19,34 +21,32 @@ const Duas = [
   {
     title: "Dua Iftar - 2",
     arabic:
-      "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ ",
+      "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ ",
     english:
       "Thirst has gone, the arteries are moist, and the reward is sure, if Allah wills.",
     roman:
-      "dhahabadh dhama-u wabtallatil ‘urooqu, wa tha-batal ajru insha Allah",
+      "dhahabadh dhama-u wabtallatil 'urooqu, wa tha-batal ajru insha Allah",
   },
 ];
 
 export function DuasContainer() {
   const [activeTab, setActiveTab] = useState(-1);
   return (
-    <div className="w-full">
-      <div className="flex flex-row justify-between ">
+    <div className="w-full animate-fade-up-d2">
+      {/* Tab row */}
+      <div className="flex gap-2">
         {Duas.map((dua, idx) => (
           <button
             onClick={() => {
-              if (idx !== activeTab) {
-                setActiveTab(idx);
-              } else {
-                setActiveTab(-1);
-              }
+              setActiveTab(idx !== activeTab ? idx : -1);
             }}
             className={classNames(
-              "text-2 w-full bg-black/20 py-4 text-center text-white shadow",
+              "flex-1 rounded-xl py-2.5 text-center text-[13px] font-semibold transition-all duration-300",
               {
-                " bg-secondary/50": activeTab === idx,
-                "rounded-l-full": idx == 0,
-                "rounded-r-full": idx == Duas.length - 1,
+                "bg-[#e8e2d8] text-ink-secondary hover:bg-[#ddd6c9] hover:text-ink":
+                  activeTab !== idx,
+                "bg-gradient-to-r from-[#0f4a2c] to-[#1a7a4e] text-white shadow-[0_2px_12px_rgba(15,74,44,0.25)]":
+                  activeTab === idx,
               },
             )}
             key={idx}
@@ -55,15 +55,24 @@ export function DuasContainer() {
           </button>
         ))}
       </div>
+
+      {/* Dua content */}
       {activeTab >= 0 && (
-        <div className="text-3 mt-8 flex flex-col gap-y-4 text-white">
-          <p dir="rtl" className="font-amiri leading-loose">
+        <div className="card mt-3 animate-fade-up flex flex-col gap-y-4 p-5 sm:p-6">
+          <p
+            dir="rtl"
+            className="text-3 font-arabic leading-[2] text-ink"
+          >
             {Duas[activeTab].arabic}
           </p>
-          <hr />
-          <i>{Duas[activeTab].roman}</i>
-          <hr />
-          <p>{Duas[activeTab].english}</p>
+          <div className="divider" />
+          <p className="text-sm italic text-ink-secondary sm:text-base">
+            {Duas[activeTab].roman}
+          </p>
+          <div className="divider" />
+          <p className="text-sm text-ink sm:text-base">
+            {Duas[activeTab].english}
+          </p>
         </div>
       )}
     </div>

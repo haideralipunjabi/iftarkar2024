@@ -1,12 +1,15 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
-    <footer className="inset-x-0 bottom-4 mb-4 text-center text-white">
-      Made with 🤍 by{" "}
-      <Link className="underline" href="https://haideralipunjabi.com">
+    <footer className="border-t border-border bg-card px-4 py-5 text-center text-sm text-ink-muted">
+      Made with{" "}
+      <span className="text-red-400">♥</span>{" "}
+      by{" "}
+      <a
+        className="font-medium text-ink-secondary transition-colors hover:text-accent"
+        href="https://haider.id"
+      >
         Haider Ali Punjabi
-      </Link>{" "}
+      </a>
     </footer>
   );
 }

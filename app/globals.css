@@ -2,16 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
-.text-5 {
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+/* ─── Base ───────────────────────────────────────────── */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f0ebe3;
+  color: #111827;
+  position: relative;
+}
+
+/* ─── Grain texture overlay ──────────────────────────── */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Responsive text scales ─────────────────────────── */
+
 .text-2 {
-  @apply text-lg md:text-xl lg:text-2xl;
+  @apply text-sm sm:text-base;
 }
+
 .text-3 {
-  @apply text-xl md:text-2xl lg:text-3xl;
+  @apply text-base sm:text-lg md:text-xl;
+}
+
+.text-4 {
+  @apply text-lg sm:text-xl md:text-2xl;
+}
+
+.text-5 {
+  @apply text-2xl sm:text-3xl md:text-4xl;
 }
 
 .text-clock {
-  @apply text-6xl sm:text-7xl md:text-8xl lg:text-9xl;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Card ───────────────────────────────────────────── */
+
+.card {
+  background: #ffffff;
+  border: 1px solid #d6d0c4;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Divider ────────────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background: #e8e2d8;
+  width: 100%;
+}
+
+/* ─── Selection ──────────────────────────────────────── */
+
+::selection {
+  background: rgba(22, 163, 74, 0.15);
+  color: #111827;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
 }

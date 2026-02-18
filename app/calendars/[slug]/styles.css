@@ -18,14 +18,14 @@
     display: none !important;
   }
 
-  main > div {
+  main {
     @apply mt-4 w-full gap-y-2 px-8;
+    max-width: 100% !important;
   }
 
   table {
-    display: block !important;
-    margin-right: auto;
-    margin-left: auto;
+    display: table !important;
+    width: 100% !important;
   }
 
   .offsets {
@@ -33,39 +33,20 @@
   }
 
   h1 {
-    @apply text-4xl;
+    @apply text-3xl;
   }
+
   .hide-print,
   button,
   footer {
-    display: none;
+    display: none !important;
   }
 }
 
 @media screen {
-  main > div {
-    @apply gap-y-8 px-4 lg:px-32;
-  }
-
-  h1 {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
-  }
-
-  table {
-    @apply mx-auto w-min text-lg md:text-xl lg:text-2xl;
-  }
-
-  .offsets {
-    @apply mb-16 text-2xl;
-  }
 
   .logo,
   .footer {
     display: none;
   }
-}
-
-table td,
-th {
-  border: 1px solid white;
 }

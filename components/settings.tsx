@@ -1,9 +1,13 @@
 "use client";
 import React from "react";
 import { Settings } from "@/lib/settings";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { ModalBody, ModalCard, ModalHeader, ModalOverlay } from "./modal";
+import {
+  ModalOverlay,
+  ModalCard,
+  ModalHeader,
+  ModalBody,
+  ModalClose,
+} from "./modal";
 
 export default function SettingsModal({
   hidden,
@@ -13,34 +17,66 @@ export default function SettingsModal({
   setHidden: React.Dispatch<boolean>;
 }) {
   if (hidden) return <></>;
+
   return (
     <>
       <ModalOverlay />
       <ModalCard>
         <ModalHeader>
-          <h2 className="text-3 text-center text-white">Settings</h2>
-          <button
-            className="text-2 absolute right-5 top-2 text-white"
-            onClick={() => {
-              setHidden(true);
-            }}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
+          <h2 className="text-lg font-semibold text-white">Settings</h2>
+          <ModalClose onClick={() => setHidden(true)} />
         </ModalHeader>
         <ModalBody>
-          <MethodPicker />
-          <OffsetPicker />
-          {/* <HijriOffset /> */}
-          <p className="text-2 text-white">
-            Looking for more options? Check out our{" "}
-            <a
-              className="underline	 hover:cursor-pointer"
-              href="https://haider.id/namazpar"
-              target="_blank"
-              rel="noopener noreferrer"
+          {/* Method */}
+          <div>
+            <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+              Method
+            </label>
+            <select
+              onChange={(e) => {
+                Settings.method = e.target.value;
+                window.location.reload();
+              }}
+              defaultValue={Settings.method}
+              className="w-full rounded-lg border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/30"
             >
-              Mobile App
+              {Object.entries(Settings.methods).map(([key, name]) => (
+                <option key={key} value={key}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Offset */}
+          <div>
+            <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
+              Offset
+            </label>
+            <select
+              onChange={(e) => {
+                Settings.offset = parseInt(e.target.value);
+                window.location.reload();
+              }}
+              defaultValue={Settings.offset}
+              className="w-full rounded-lg border border-border bg-bg px-3 py-2.5 text-sm text-ink outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/30"
+            >
+              {Object.entries(Settings.offsets).map(([key, name]) => (
+                <option key={key} value={key}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Link */}
+          <p className="mt-1 text-center text-xs text-ink-muted">
+            Want more features?{" "}
+            <a
+              href="https://haider.id/namazpar"
+              className="font-medium text-accent hover:underline"
+            >
+              Try our Mobile App →
             </a>
           </p>
         </ModalBody>
@@ -48,101 +84,3 @@ export default function SettingsModal({
     </>
   );
 }
-
-function SettingsFieldLabel({ children }: { children?: React.ReactNode }) {
-  return <span className="text-sm text-white md:text-lg">{children}</span>;
-}
-
-function SettingsSelect({
-  children,
-  onChange,
-}: {
-  children?: React.ReactNode;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-}) {
-  return (
-    <select className="w-full rounded-lg p-2" onChange={onChange}>
-      {children}
-    </select>
-  );
-}
-
-function MethodPicker() {
-  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    Settings.method = event.target.selectedOptions[0].value;
-  };
-  return (
-    <>
-      <SettingsFieldLabel>Method</SettingsFieldLabel>
-      <SettingsSelect onChange={onChange}>
-        {Object.entries(Settings.methods).map(([key, value]) => (
-          <option selected={key == Settings.method} key={key} value={key}>
-            {value}
-          </option>
-        ))}
-      </SettingsSelect>
-    </>
-  );
-}
-
-function OffsetPicker() {
-  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    Settings.offset = event.target.selectedOptions[0].value;
-  };
-  return (
-    <>
-      <SettingsFieldLabel>Offset</SettingsFieldLabel>
-      <SettingsSelect onChange={onChange}>
-        {Object.entries(Settings.offsets).map(([key, value]) => (
-          <option
-            selected={key == Settings.offset.toString()}
-            key={key}
-            value={key}
-          >
-            {value}
-          </option>
-        ))}
-      </SettingsSelect>
-    </>
-  );
-}
-// function HijriOffset() {
-//   const [offset, setOffset] = useState(Settings.hijriOffset);
-//   const updateHijriOffset = (change: number) => {
-//     Settings.hijriOffset = Settings.hijriOffset + change;
-//     setOffset(offset + change);
-//   };
-//   const decrease = () => {
-//     updateHijriOffset(-1);
-//   };
-//   const increase = () => {
-//     updateHijriOffset(1);
-//   };
-//   return (
-//     <>
-//       <SettingsFieldLabel>Hijri Offset</SettingsFieldLabel>
-//       <div className="text-3 flex flex-col items-center gap-y-2 text-white">
-//         <div className="flex w-full flex-row items-center justify-between">
-//           <button
-//             onClick={() => {
-//               decrease();
-//             }}
-//             className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
-//           >
-//             <FontAwesomeIcon icon={faMinus} />
-//           </button>
-//           {offset}
-//           <button
-//             onClick={() => {
-//               increase();
-//             }}
-//             className="flex items-center justify-center rounded-full bg-secondary p-4 text-xl"
-//           >
-//             <FontAwesomeIcon icon={faPlus} />
-//           </button>
-//         </div>
-//         <i className="text-lg md:text-xl">{getIslamicDate()}</i>
-//       </div>
-//     </>
-//   );
-// }
