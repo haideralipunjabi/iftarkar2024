@@ -35,7 +35,7 @@
   h1 {
     @apply text-4xl;
   }
-
+  .hide-print,
   button,
   footer {
     display: none;

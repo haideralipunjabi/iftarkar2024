@@ -41,7 +41,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         <PrintButton />
         <div className="mx-auto flex w-min flex-row gap-x-2">
           <a
-            className="text-2 mx-auto w-min rounded-full bg-secondary px-16 py-2 text-center"
+            className="text-2 hide-print mx-auto w-min rounded-full bg-secondary px-16 py-2 text-center"
             href={pdfs[params.slug as keyof typeof pdfs]}
             target="_blank"
             rel="noopener noreferrer"
@@ -88,7 +88,9 @@ export default function Page({ params }: { params: { slug: string } }) {
               hidden: params.slug != "etk",
             })}
           >
-            <h4>Note: Sehri ends 10 minutes before Fajr for ahtiyat.</h4>
+            <h4>
+              Note: Sehri ends 10 minutes before Fajr for ahtiyat / imsak.
+            </h4>
           </div>
         }
         <div className="offsets hidden md:block">
@@ -106,6 +108,13 @@ export default function Page({ params }: { params: { slug: string } }) {
               </span>
             ))}
           </p>
+          <h4
+            className={classNames("text-center text-white", {
+              hidden: timings[params.slug as TimingKeys].offsets.length != 0,
+            })}
+          >
+            Timings are for Srinagar City
+          </h4>
         </div>
         <div className="footer mt-2 text-center">
           Visit our websites: <i>iftarkar.com</i> <i>namazpar.com</i>
