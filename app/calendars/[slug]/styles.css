@@ -19,7 +19,7 @@
   }
 
   main > div {
-    @apply mt-8 w-full gap-y-2 px-8;
+    @apply mt-4 w-full gap-y-2 px-8;
   }
 
   table {
