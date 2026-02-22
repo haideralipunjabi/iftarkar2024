@@ -2,6 +2,7 @@ import timings from "@/data/timings.json";
 import { TimingKeys } from "@/types";
 import { getLabel } from "./utils";
 
+export const non_kmr = ["mumbai_jaset", "blr_juk"];
 export class Settings {
   static prefix = "settingsV2-";
   static get method(): string {
@@ -39,6 +40,8 @@ export class Settings {
   }
 
   static get offsetLabel(): string {
+    if (non_kmr.includes(Settings.method)) return "";
+    if (Settings.method == "tsajk" && Settings.offset === 0) return "Anantnag";
     if (Settings.offset === 0) return "Srinagar";
     return (
       timings[Settings.method as TimingKeys].offsets.find(
@@ -60,6 +63,19 @@ export class Settings {
   }
 
   static get offsets(): { [key: number]: string } {
+    let data = {};
+    if (non_kmr.includes(Settings.method)) {
+      return data;
+    }
+    if (Settings.method == "tsajk") {
+      return Object.fromEntries([
+        ...[[0, "Anantnag"]],
+        ...timings[Settings.method as TimingKeys].offsets.map((offset) => [
+          offset.offset,
+          offset.name,
+        ]),
+      ]);
+    }
     return Object.fromEntries([
       ...[[0, "Srinagar"]],
       ...timings[Settings.method as TimingKeys].offsets.map((offset) => [
@@ -68,7 +84,9 @@ export class Settings {
       ]),
     ]);
   }
-
+  static get isNonKmr() {
+    return non_kmr.includes(Settings.method);
+  }
   static get hijriOffset(): number {
     if (typeof window == "undefined") return 0;
     return parseInt(

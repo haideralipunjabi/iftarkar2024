@@ -8,6 +8,7 @@ import logo from "@/public/logo_horizontal.svg";
 import PrintButton from "@/components/printButtons";
 import ICalModal from "@/components/icalModal";
 import classNames from "classnames";
+import { non_kmr } from "@/lib/settings";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const startDate = DateTime.fromFormat(
@@ -33,6 +34,10 @@ export default function Page({ params }: { params: { slug: string } }) {
       "https://drive.google.com/file/d/1NEzsc7LmdiiuKQA4ohmFuNL39db_-qTI/view?usp=drive_link",
     ajksa:
       "https://drive.google.com/file/d/1_wCJSliSM8EcOkxGtOSgNj3roNG7NAeX/view?usp=drive_link",
+    mumbai_jaset:
+      "https://drive.google.com/file/d/185ga3V37vFTZzoy7FNw9Sw1W9qGefFgs/view?usp=drive_link",
+    blr_juk:
+      "https://drive.google.com/file/d/1gbG2AnJYPSTfYkLFsyS_T4iKgdVuCLR9/view?usp=drive_link"
   };
 
   return (
@@ -122,10 +127,10 @@ export default function Page({ params }: { params: { slug: string } }) {
           </p>
           <h4
             className={classNames("text-center text-white", {
-              hidden: timings[params.slug as TimingKeys].offsets.length != 0,
+              hidden: non_kmr.includes(params.slug),
             })}
           >
-            Timings are for Srinagar City
+            Timings are for {offsets[0].name}
           </h4>
         </div>
         <div className="footer mt-2 text-center">

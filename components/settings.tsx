@@ -89,6 +89,7 @@ function OffsetPicker() {
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     Settings.offset = event.target.selectedOptions[0].value;
   };
+  if (Settings.isNonKmr) return <></>;
   return (
     <>
       <SettingsFieldLabel>Offset</SettingsFieldLabel>
