@@ -2,7 +2,7 @@ import timings from "@/data/timings.json";
 import { TimingKeys } from "@/types";
 import { getLabel } from "./utils";
 
-export const non_kmr = ["mumbai_jaset", "blr_juk"];
+export const non_kmr = ["mumbai_jaset", "blr_juk", "faridabad_haryana"];
 export class Settings {
   static prefix = "settingsV2-";
   static get method(): string {

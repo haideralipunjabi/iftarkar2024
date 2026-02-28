@@ -38,6 +38,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       "https://drive.google.com/file/d/185ga3V37vFTZzoy7FNw9Sw1W9qGefFgs/view?usp=drive_link",
     blr_juk:
       "https://drive.google.com/file/d/1gbG2AnJYPSTfYkLFsyS_T4iKgdVuCLR9/view?usp=drive_link",
+    faridabad_haryana:
+      "https://drive.google.com/file/d/1X-lQIRDt_oZSusoBJ1sy2xB6kfLEHN09/view?usp=drive_link",
   };
 
   return (
