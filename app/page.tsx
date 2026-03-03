@@ -3,6 +3,7 @@ import CalendarModal from "@/components/calendarsModal";
 import { DuasContainer } from "@/components/duas";
 import Timer from "@/components/timer";
 import { faCalendarAlt, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSprayCanSparkles } from "@fortawesome/free-solid-svg-icons/faSprayCanSparkles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
@@ -41,6 +42,18 @@ export default function Home() {
                 icon={faMobileAlt}
               />
               Download NamazPar Mobile App
+              
+            </Link>
+            <Link
+              className="rounded-full bg-secondary px-4 py-2"
+              href={`https://instagram.com/rumuz.attars`}
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                className="mx-4 inline-block w-8"
+                icon={faSprayCanSparkles}
+              />
+              Ramadan Exclusive Attars - 10% off on Rumuz Attars
             </Link>
           </div>
         </div>
